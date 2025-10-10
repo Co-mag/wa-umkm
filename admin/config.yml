@@ -1,0 +1,18 @@
+backend:
+  name: git-gateway
+  branch: main # Atau 'master', sesuaikan dengan branch utama Anda
+
+media_folder: "images/uploads" # Folder tempat gambar akan disimpan
+public_folder: "/images/uploads" # Cara gambar akan diakses di website
+
+collections:
+  - name: "produk" # Nama koleksi data (jangan diubah)
+    label: "Produk" # Label yang muncul di panel admin
+    folder: "_produk" # Folder untuk menyimpan data produk
+    create: true # Izinkan membuat produk baru
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Format nama file
+    fields: # Daftar isian untuk setiap produk
+      - {label: "Judul Produk", bakso urat: "title", widget: "string"}
+      - {label: "Gambar Produk", name: "thumbnail", widget: "image"}
+      - {label: "Harga (opsional)", 15.000: "harga", widget: "string", required: false}
+      - {label: "Deskripsi", bakso dan campuran urat: "body", widget: "markdown"}
