@@ -3,14 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang di Wakwak Live</title>
+    <title>Wakwak Live - Toko UMKM</title>
+    <link rel="stylesheet" href="style.css">
     
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
 </head>
 <body>
-    <h1>Website UMKM Wakwak Live</h1>
-    <p>Website ini sedang dalam tahap pembangunan.</p>
-    
-    </body>
+
+    <header>
+        <button id="hamburger-btn">&#9776;</button> <h1>Wakwak Live</h1>
+    </header>
+
+    <nav id="sidenav">
+        <a href="#utama">Utama</a>
+        <a href="#kontak">Kontak</a>
+        <a href="#lokasi">Lokasi</a>
+    </nav>
+
+    <main>
+        <section id="utama" class="content-section">
+            <h2>Produk Kami</h2>
+            <div id="produk-container">
+                </div>
+        </section>
+
+        <section id="kontak" class="content-section">
+            <h2>Hubungi Kami</h2>
+            <p>Anda bisa menghubungi kami melalui WhatsApp di nomor 0812-3456-7890.</p>
+            </section>
+
+        <section id="lokasi" class="content-section">
+            <h2>Alamat Lokasi</h2>
+            <p>Kami berada di Jl. Merdeka No. 17, Jakarta.</p>
+            </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
 </html>
