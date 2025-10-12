@@ -2,6 +2,9 @@ backend:
   name: git-gateway
   branch: main
 
+# Baris baru untuk memuat file CSS khusus preview
+register_preview_style: "/admin/preview-style.css"
+
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
@@ -23,4 +26,3 @@ collections:
               - {label: "Gambar Produk", name: "thumbnail", widget: "image"}
               - {label: "Harga", name: "harga", widget: "string", required: false}
               - {label: "Deskripsi", name: "deskripsi", widget: "text", required: false}
-              
