@@ -2,9 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-# Baris baru untuk memuat file CSS khusus preview
 register_preview_style: "/admin/preview-style.css"
-
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
@@ -17,6 +15,8 @@ collections:
       - label: "Daftar Produk"
         name: "items"
         file: "_data/produk.json"
+        # Baris ini SANGAT PENTING untuk menggunakan template HTML baru kita
+        preview_path: "/admin/preview-template.html" 
         fields:
           - label: "Daftar Semua Produk"
             name: "produk_list"
