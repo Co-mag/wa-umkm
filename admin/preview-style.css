@@ -1,0 +1,45 @@
+/* Styling khusus untuk preview di dalam admin panel */
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    max-width: 320px; /* Batasi lebar agar terlihat bagus */
+    margin: 0 auto; /* Posisikan di tengah */
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.product-card-content {
+    padding: 15px;
+}
+
+.product-card-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.product-card-content .harga {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.product-card-content p {
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.5;
+}
