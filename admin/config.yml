@@ -9,21 +9,14 @@ public_folder: "/images/uploads"
 collections:
   - name: "produk"
     label: "Produk"
-    label_singular: "Produk"
-    description: "Kelola semua produk yang akan ditampilkan di website."
-    files:
-      - label: "Daftar Produk"
-        name: "items"
-        file: "_data/produk.json"
-        # Baris ini SANGAT PENTING untuk menggunakan template HTML baru kita
-        preview_path: "/admin/preview-template.html" 
-        fields:
-          - label: "Daftar Semua Produk"
-            name: "produk_list"
-            widget: "list"
-            fields:
-              - {label: "Judul Produk", name: "title", widget: "string"}
-              - {label: "Gambar Produk", name: "thumbnail", widget: "image"}
-              - {label: "Harga", name: "harga", widget: "string", required: false}
-              - {label: "Deskripsi", name: "deskripsi", widget: "text", required: false}
-              
+    label_singular: "Produk Baru"
+    folder: "produk" # <-- PERUBAHAN PENTING: Menyimpan produk di folder 'produk'
+    create: true
+    # Baris ini SANGAT PENTING untuk menggunakan template HTML kita
+    preview_path: "/admin/preview-template.html"
+    fields:
+      - {label: "Judul Produk", name: "title", widget: "string"}
+      - {label: "Gambar Produk", name: "thumbnail", widget: "image"}
+      - {label: "Harga", name: "harga", widget: "string", required: false}
+      - {label: "Deskripsi", name: "deskripsi", widget: "text", required: false}
+      
