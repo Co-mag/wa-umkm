@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview Produk</title>
+  <link rel="stylesheet" href="/admin/preview-style.css">
+</head>
+<body>
+  <div class="product-card">
+    <img src="{{fields.thumbnail | default('https://via.placeholder.com/300x200.png?text=Gambar+Produk')}}" alt="Preview Gambar">
+    <div class="product-card-content">
+      <h3>{{fields.title | default('Judul Produk Anda')}}</h3>
+      <div class="harga">{{fields.harga | default('Rp 0')}}</div>
+      <p>{{fields.deskripsi | default('Deskripsi singkat produk akan muncul di sini.')}}</p>
+    </div>
+  </div>
+</body>
+</html>
