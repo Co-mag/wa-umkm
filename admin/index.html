@@ -45,6 +45,27 @@
 
   CMS.registerPreviewTemplate('produk', ProdukPreview);
   CMS.registerPreviewStyle('/admin/custom-preview.css');
+    // Sisipkan footer custom sekali saja
+  function injectFooter() {
+    if (document.getElementById('custom-footer')) return;
+
+    const f = document.createElement('div');
+    f.id = 'custom-footer';
+    f.setAttribute('role', 'contentinfo');
+    // Tahun otomatis mengikuti device (kamu tetap bisa ganti manual jadi 2025)
+    const year = new Date().getFullYear();
+    f.innerHTML = `
+      <div class="cf-wrap">
+        <span class="cf-text">copyright &copy; ${year} widad</span>
+      </div>
+    `;
+    document.body.appendChild(f);
+  }
+
+  // Panggil di berbagai momen (SPA)
+  document.addEventListener('DOMContentLoaded', injectFooter);
+  window.addEventListener('load', injectFooter);
+  setTimeout(injectFooter, 800);
       </script>
 </body>
 </html>
