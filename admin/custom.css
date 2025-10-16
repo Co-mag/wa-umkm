@@ -1,75 +1,108 @@
-/* Warna utama brand */
-:root {
-  --brand: #111827;        /* almost-black */
-  --brand-2: #0ea5e9;      /* cyan aksen */
-  --surface: #0b1220;      /* gelap elegan */
-  --card: #111827;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --success: #10b981;
+/* ====== THEME & TOKENS ====== */
+:root{
+  --bg: #0b1220;          /* background utama */
+  --bg-2:#0f172a;         /* panel/form */
+  --card:#0d1528;         /* kartu/preview */
+  --line:rgba(255,255,255,.08);
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --brand:#0ea5e9;
+  --brand-2:#38bdf8;
+  --success:#10b981;
+  --danger:#ef4444;
+  --radius:14px;
+  --radius-sm:10px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
-/* Layout Admin Shell */
-body {
-  background: linear-gradient(180deg, #0b1220 0%, #0b1220 60%, #0f172a 100%);
-  color: var(--text);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+/* ====== GLOBAL ====== */
+html,body{background:var(--bg); color:var(--text); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+a{color:var(--brand);}
+*{scrollbar-width:thin;}
+*::-webkit-scrollbar{width:10px;height:10px;}
+*::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:10px;}
+
+/* ====== TOPBAR ====== */
+.nc-appbar{
+  background:var(--bg) !important;
+  border-bottom:1px solid var(--line) !important;
 }
 
-/* App topbar */
-.nc-appbar {
-  background: #0b1220 !important;
-  border-bottom: 1px solid rgba(255,255,255,.06);
+/* ====== SIDEBAR / LIST ====== */
+.nc-sidebar{
+  background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%) !important;
+  border-right:1px solid var(--line) !important;
 }
-.nc-appbar-logo, .nc-appbar-title {
-  filter: brightness(1.1);
-}
-
-/* Panel & card */
-.card, .nc-collectionPage-card, .nc-collectionCard-card {
-  background: var(--card) !important;
-  border: 1px solid rgba(255,255,255,.06) !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35) !important;
-  border-radius: 16px !important;
+.nc-collectionCard-card, .nc-collectionPage-card, .card{
+  background:var(--card) !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius) !important;
+  box-shadow:var(--shadow) !important;
 }
 
-/* Tombol */
-button, .nc-btn, .nc-toolbar-button {
-  border-radius: 10px !important;
+/* ====== FORM CONTROLS ====== */
+input, textarea, select, .nc-control, .nc-widgetPreview{
+  background:var(--bg-2) !important;
+  color:var(--text) !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius-sm) !important;
 }
-button.nc-primary, .nc-btn-primary {
-  background: var(--brand-2) !important;
-  border: none !important;
-  color: #001018 !important;
-  font-weight: 600;
-}
-button:hover, .nc-btn:hover {
-  transform: translateY(-1px);
+label{font-size:.82rem; letter-spacing:.02em; color:var(--muted); text-transform:uppercase;}
+.nc-control input::placeholder, .nc-control textarea::placeholder{color:#94a3b8;}
+
+.nc-field{margin-bottom:14px !important;}
+/* rapikan group object (DETAIL) */
+.nc-objectWidget {
+  background:var(--bg-2) !important;
+  border:1px dashed var(--line) !important;
+  border-radius:var(--radius) !important;
+  padding:10px !important;
 }
 
-/* Form fields */
-input, textarea, .nc-control, .nc-widgetPreview {
-  background: #0f172a !important;
-  color: var(--text) !important;
-  border: 1px solid rgba(255,255,255,.08) !important;
-  border-radius: 10px !important;
+/* ====== BUTTONS ====== */
+button, .nc-btn, .nc-toolbar-button{border-radius:10px !important;}
+.nc-btn-primary, .nc-toolbar-buttonPrimary, button.nc-primary{
+  background:linear-gradient(135deg,var(--brand) 0%,var(--brand-2) 100%) !important;
+  border:none !important; color:#001018 !important; font-weight:700;
+}
+.nc-btn-danger{background:var(--danger) !important; color:#fff !important;}
+button:hover, .nc-btn:hover{transform:translateY(-1px);}
+
+/* ====== STATUS BADGE ====== */
+.nc-status-badge--published{background:var(--success) !important; color:#062016 !important;}
+.nc-status-badge--draft{background:#f59e0b !important; color:#211300 !important;}
+
+/* ====== PREVIEW PANEL & EDITOR LAYOUT ====== */
+.nc-editor{background:transparent !important;}
+.nc-editorPane, .nc-previewPane{
+  background:transparent !important;
+}
+.nc-previewPane .card, .produk-preview{
+  background:var(--card) !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius) !important;
+  box-shadow:var(--shadow) !important;
 }
 
-/* List item ringkas */
-.nc-entryListing-card .nc-entryListing-cardMeta {
-  color: var(--muted);
+/* ====== MOBILISASI (MOBILE FIRST) ====== */
+@media (max-width: 900px){
+  /* bikin preview sticky supaya selalu kelihatan saat scroll */
+  .nc-previewPane{
+    position:sticky; top:64px; max-height:44vh; overflow:auto; padding:8px;
+  }
+  /* memberi ruang di bawah agar bar bawah tidak menutupi form */
+  .nc-editorPane{padding-bottom:calc(84px + env(safe-area-inset-bottom));}
+  /* rapikan spacing field mobile */
+  .nc-field{margin-bottom:12px !important;}
 }
 
-/* Indicator published/draft */
-.nc-status-badge--published { background: var(--success) !important; color: #03160f !important; }
-.nc-status-badge--draft { background: #f59e0b !important; }
-
-/* Sidebar koleksi */
-.nc-sidebar {
-  background: var(--surface) !important;
-  border-right: 1px solid rgba(255,255,255,.06) !important;
+/* ====== TAB FOOTER (Contents / Workflow / Media) agar tidak nutup konten ====== */
+.nc-appFooter, .nc-footer, .nc-collectionPage-footer, .nc-collectionViewFooter{
+  background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,.35) 40%, rgba(0,0,0,.65) 100%) !important;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom)) !important;
+  backdrop-filter:saturate(120%) blur(10px);
 }
 
-/* Scrollbar halus */
-*::-webkit-scrollbar { width: 10px; height: 10px; }
-*::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 10px; }
+/* ====== KARTU RINGKAS ENTRY LISTING ====== */
+.nc-entryListing-card {border-radius:var(--radius) !important; background:var(--card) !important;}
+.nc-entryListing-cardMeta{color:var(--muted) !important;}
