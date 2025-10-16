@@ -14,26 +14,37 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // Tambahkan stylesheet juga ke iframe Preview
-    CMS.registerPreviewStyle('/admin/custom-preview.css');
+  const h = window.h || window.React?.createElement;
 
-    // Contoh: Preview Template untuk koleksi "produk"
-    const ProdukPreview = ({ entry, widgetFor }) => {
-      const data = entry.get('data');
-      return h('article', { className: 'produk-preview' }, [
-        h('h1', {}, data.get('title') || 'Nama Produk'),
-        h('p', { className: 'price' }, 'Rp ' + (data.get('price') || '0')),
-        h('div', { className: 'image' }, [
-          h('img', { src: data.get('image') || '', alt: data.get('title') || '' })
-        ]),
-        h('div', { className: 'body' }, widgetFor('body'))
-      ]);
-    };
-    CMS.registerPreviewTemplate('produk', ProdukPreview);
+  const Badge = (text, cls) =>
+    h('span', { className: `badge ${cls}` }, text);
 
-    // Ganti logo login (opsional, jika pakai Netlify Identity)
-    window.CMS_MANUAL_INIT = true;
-    CMS.init({ config: { load_config_file: true, logo_url: '/images/uploads/logo-admin.png' } });
-  </script>
+  const ProdukPreview = ({ entry, widgetFor }) => {
+    const d = entry.get('data') || new Map();
+    const title = d.get('title') || 'Nama Produk';
+    const price = d.get('price') || 0;
+    const image = d.get('image') || '';
+    const cat   = d.getIn(['detail','category']) || '';
+    const stock = d.getIn(['detail','stock']) || 0;
+
+    return h('article', { className:'produk-preview' }, [
+      h('div', { className:'pp-head' }, [
+        h('h2', {}, title),
+        h('div', { className:'pp-badges' }, [
+          Badge(`Rp ${Number(price||0).toLocaleString('id-ID')}`, 'price'),
+          cat ? Badge(cat, 'cat') : null,
+          Badge(`Stok ${stock||0}`, 'stock'),
+        ])
+      ]),
+      image ? h('div', { className:'pp-imgWrap' }, [
+        h('img', { src:image, alt:title })
+      ]) : null,
+      h('div', { className:'pp-body' }, widgetFor('body')),
+    ]);
+  };
+
+  CMS.registerPreviewTemplate('produk', ProdukPreview);
+  CMS.registerPreviewStyle('/admin/custom-preview.css');
+      </script>
 </body>
 </html>
