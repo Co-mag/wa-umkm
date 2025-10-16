@@ -106,3 +106,48 @@ button:hover, .nc-btn:hover{transform:translateY(-1px);}
 /* ====== KARTU RINGKAS ENTRY LISTING ====== */
 .nc-entryListing-card {border-radius:var(--radius) !important; background:var(--card) !important;}
 .nc-entryListing-cardMeta{color:var(--muted) !important;}
+
+/* ==== FOOTER CUSTOM WIDAD ==== */
+:root{
+  --foot-h: 52px; /* tinggi footer */
+}
+
+body{
+  /* beri ruang supaya footer tidak menutupi konten */
+  padding-bottom: calc(var(--foot-h) + env(safe-area-inset-bottom) + 8px);
+}
+
+/* footer fixed di paling bawah, berada DI ATAS footer bawaan CMS */
+#custom-footer{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: var(--foot-h);
+  z-index: 9999; /* pastikan di atas elemen lain */
+  background: linear-gradient(180deg, rgba(6,10,18,.0) 0%, rgba(6,10,18,.45) 14%, rgba(6,10,18,.85) 100%), #0b1220;
+  border-top: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: saturate(120%) blur(10px);
+  -webkit-backdrop-filter: saturate(120%) blur(10px);
+  color: #e5e7eb;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 12px;
+  pointer-events: none; /* biar tidak menghalangi klik tab "Contents/Workflow/Media" */
+}
+
+#custom-footer .cf-wrap{
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+#custom-footer .cf-text{
+  font-size: .88rem;
+  letter-spacing: .02em;
+  color: #cbd5e1;
+  text-transform: lowercase;
+  pointer-events: auto;   /* jika mau bisa di-select */
+}
+
+/* Sedikit ruang ekstra di layar kecil */
+@media (max-width: 900px){
+  body{ padding-bottom: calc(var(--foot-h) + 16px + env(safe-area-inset-bottom)); }
+}
