@@ -2,21 +2,33 @@ backend:
   name: git-gateway
   branch: main
 
-register_preview_style: "/admin/preview-style.css"
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
+
+publish_mode: editorial_workflow   # Draft → Review → Publish
+locale: "id"                       # Label bawaan tetap Inggris, tapi label koleksi di bawah pakai ID
 
 collections:
   - name: "produk"
     label: "Produk"
-    label_singular: "Produk Baru"
-    folder: "produk" # <-- PERUBAHAN PENTING: Menyimpan produk di folder 'produk'
+    label_singular: "Produk"
+    folder: "produk"
     create: true
-    # Baris ini SANGAT PENTING untuk menggunakan template HTML kita
-    preview_path: "/admin/preview-template.html"
+    slug: "{{slug}}"
+    summary: "{{title}} — Rp {{price}}"
+    sortable_fields: ["title", "price", "commit_date"]
+    view_filters:
+      - label: "Harga < 50k"
+        field: "price"
+        pattern: "^[0-4][0-9]{4}$"
     fields:
-      - {label: "Judul Produk", name: "title", widget: "string"}
-      - {label: "Gambar Produk", name: "thumbnail", widget: "image"}
-      - {label: "Harga", name: "harga", widget: "string", required: false}
-      - {label: "Deskripsi", name: "deskripsi", widget: "text", required: false}
-      
+      - { label: "Nama", name: "title", widget: "string" }
+      - { label: "Harga (angka)", name: "price", widget: "number", value_type: "int", min: 0, step: 500 }
+      - { label: "Gambar", name: "image", widget: "image", allow_multiple: false }
+      - label: "Detail"
+        name: "detail"
+        widget: "object"
+        fields:
+          - { label: "Kategori", name: "category", widget: "select", options: ["Makanan", "Minuman", "Lainnya"] }
+          - { label: "Stok", name: "stock", widget: "number", value_type: "int", min: 0 }
+      - { label: "Deskripsi", name: "body", widget: "markdown" }
